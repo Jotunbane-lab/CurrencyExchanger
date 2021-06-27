@@ -28,7 +28,6 @@ public class Controller {
     }
 
     @GetMapping("/exchange/{fromCode}/to/{toCode}/amount/{value}")
-    //  @GetMapping("/exchanger/usd/from/eur/amount/100")
     public ResponseEntity<?> mainFunctionality(@PathVariable String toCode, @PathVariable String fromCode, @PathVariable BigDecimal value) {
         String codeTo = toCode.toUpperCase();
         String codeFrom = fromCode.toUpperCase();
