@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @RestController
-@RequestMapping("/exchanger")
+@RequestMapping
 public class Controller {
     private NbpExchangeRate getRates(String currencyCode) {
         NbpExchangeRateDownloader downloader = NbpExchangeRateDownloader.getInstance();
@@ -23,8 +23,8 @@ public class Controller {
                 .get(0);
     }
 
-    @GetMapping("/exchanger/{fromCode}/from/{toCode}/amount/{value}/")
-//    @GetMapping("/exchanger/usd/from/eur/amount/100")
+    @GetMapping("/exchanger/{fromCode}/from/{toCode}/amount/{value}")
+  //  @GetMapping("/exchanger/usd/from/eur/amount/100")
     public ResponseEntity<BigDecimal> mainFunctionality(@PathVariable String toCode, @PathVariable String fromCode, @PathVariable BigDecimal value) {
         String codeTo = toCode.toUpperCase();
         String codeFrom = fromCode.toUpperCase();
