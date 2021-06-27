@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 @SpringBootApplication
 public class CurrencyExchangerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CurrencyExchangerApplication.class, args);
-		System.out.println("App Started");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CurrencyExchangerApplication.class, args);
+        System.out.println("App Started");
+    }
 }

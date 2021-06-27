@@ -32,24 +32,24 @@ public class Controller {
         String codeTo = toCode.toUpperCase();
         String codeFrom = fromCode.toUpperCase();
 
-        if(!Validator(codeTo,codeFrom)){
-            return new ResponseEntity<>("Unsupported currencies",HttpStatus.BAD_REQUEST);
+        if (!Validator(codeTo, codeFrom)) {
+            return new ResponseEntity<>("Unsupported currencies", HttpStatus.BAD_REQUEST);
         }
-        if(value.compareTo(BigDecimal.ZERO)<0){
+        if (value.compareTo(BigDecimal.ZERO) < 0) {
             return new ResponseEntity<>("Negative value", HttpStatus.BAD_REQUEST);
         }
         NbpExchangeRate ratesTo = new NbpExchangeRate();
         NbpExchangeRate ratesFrom = new NbpExchangeRate();
 
-        if(codeTo.equals("PLN")){
+        if (codeTo.equals("PLN")) {
             ratesTo.setAsk(BigDecimal.ONE);
             ratesTo.setBid(BigDecimal.ONE);
-        }else ratesTo = getRates(codeTo);
+        } else ratesTo = getRates(codeTo);
 
-        if(codeFrom.equals("PLN")){
+        if (codeFrom.equals("PLN")) {
             ratesFrom.setAsk(BigDecimal.ONE);
             ratesFrom.setBid(BigDecimal.ONE);
-        }else ratesFrom = getRates(codeFrom);
+        } else ratesFrom = getRates(codeFrom);
 
         BigDecimal finalValue = value.multiply(ratesFrom.getBid())
                 .multiply(BigDecimal.valueOf(0.98))
@@ -60,7 +60,7 @@ public class Controller {
 
     }
 
-    private static boolean  Validator(String toCode, String fromCode) {
+    private static boolean Validator(String toCode, String fromCode) {
         String[] codes = {"USD", "EUR", "PLN", "GBP"};
         if (!Arrays.asList(codes).contains(toCode)) return false;
         return Arrays.asList(codes).contains(fromCode);

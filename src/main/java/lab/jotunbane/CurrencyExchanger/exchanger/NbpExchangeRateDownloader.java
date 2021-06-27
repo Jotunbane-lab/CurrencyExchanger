@@ -23,13 +23,17 @@ public class NbpExchangeRateDownloader {
         }
         return instance;
     }
-    private LocalDate getLastToday(){
+
+    private LocalDate getLastToday() {
         LocalDate date = LocalDate.now();
         DayOfWeek dayOfWeek = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK));
         switch (dayOfWeek) {
-            case SUNDAY: return date.minusDays(2L);
-            case SATURDAY: return date.minusDays(1L);
-            default: return date;
+            case SUNDAY:
+                return date.minusDays(2L);
+            case SATURDAY:
+                return date.minusDays(1L);
+            default:
+                return date;
         }
     }
 
