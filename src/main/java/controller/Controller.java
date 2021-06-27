@@ -2,6 +2,8 @@ package controller;
 
 import exchanger.NbpExchangeRate;
 import exchanger.NbpExchangeRateDownloader;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +38,11 @@ public class Controller {
                 .divide(ratesTo.getAsk(), RoundingMode.DOWN)
                 .multiply(BigDecimal.valueOf(0.98));
 
-        return ;
+        return Response
+                .status(Response.Status.OK)
+                .entity(finalValue.toString())
+                .type(MediaType.APPLICATION_JSON_TYPE)
+                .build();
 
     }
 
