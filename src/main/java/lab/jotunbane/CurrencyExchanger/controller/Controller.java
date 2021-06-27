@@ -42,11 +42,5 @@ public class Controller {
 
     }
 
-    @GetMapping("/AA")
-    public ResponseEntity<String> shit(){
-        String s = "kurwa!";
-        return new ResponseEntity<>(s, HttpStatus.OK);
-    }
-
 
 }
