@@ -1,4 +1,4 @@
-package exchanger;
+package lab.jotunbane.CurrencyExchanger.exchanger;
 
 import lombok.Getter;
 

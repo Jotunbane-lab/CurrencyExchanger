@@ -1,7 +1,6 @@
-package exchanger;
+package lab.jotunbane.CurrencyExchanger.exchanger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.tomcat.jni.Local;
 
 import java.io.BufferedReader;
 import java.io.IOException;

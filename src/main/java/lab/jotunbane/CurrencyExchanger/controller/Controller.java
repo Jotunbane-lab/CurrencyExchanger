@@ -1,14 +1,13 @@
-package controller;
+package lab.jotunbane.CurrencyExchanger.controller;
 
-import exchanger.NbpExchangeRate;
-import exchanger.NbpExchangeRateDownloader;
+import lab.jotunbane.CurrencyExchanger.exchanger.NbpExchangeRate;
+import lab.jotunbane.CurrencyExchanger.exchanger.NbpExchangeRateDownloader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -24,7 +23,8 @@ public class Controller {
                 .get(0);
     }
 
-    @GetMapping("/exchanger/{fromCode}/from/{toCode}/amount/{value}")
+    @GetMapping("/exchanger/{fromCode}/from/{toCode}/amount/{value}/")
+//    @GetMapping("/exchanger/usd/from/eur/amount/100")
     public ResponseEntity<BigDecimal> mainFunctionality(@PathVariable String toCode, @PathVariable String fromCode, @PathVariable BigDecimal value) {
         String codeTo = toCode.toUpperCase();
         String codeFrom = fromCode.toUpperCase();
@@ -40,6 +40,12 @@ public class Controller {
 
         return new ResponseEntity<>(finalValue, HttpStatus.OK);
 
+    }
+
+    @GetMapping("/AA")
+    public ResponseEntity<String> shit(){
+        String s = "kurwa!";
+        return new ResponseEntity<>(s, HttpStatus.OK);
     }
 
 
