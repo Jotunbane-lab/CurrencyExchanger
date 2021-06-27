@@ -25,4 +25,8 @@ public class Controller {
                 .get(0)
                 .getBid();
     }
+
+
+
+
 }
