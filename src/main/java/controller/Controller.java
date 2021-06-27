@@ -2,8 +2,8 @@ package controller;
 
 import exchanger.NbpExchangeRate;
 import exchanger.NbpExchangeRateDownloader;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +25,7 @@ public class Controller {
     }
 
     @GetMapping("/exchanger/{fromCode}/from/{toCode}/amount/{value}")
-    public Response mainFunctionality(@PathVariable String toCode, @PathVariable String fromCode, @PathVariable BigDecimal value) {
+    public ResponseEntity<BigDecimal> mainFunctionality(@PathVariable String toCode, @PathVariable String fromCode, @PathVariable BigDecimal value) {
         String codeTo = toCode.toUpperCase();
         String codeFrom = fromCode.toUpperCase();
         // if(value.compareTo(BigDecimal.ZERO) < 0){throw IllegalArgumentException;}; //value validator
@@ -38,11 +38,7 @@ public class Controller {
                 .divide(ratesTo.getAsk(), RoundingMode.DOWN)
                 .multiply(BigDecimal.valueOf(0.98));
 
-        return Response
-                .status(Response.Status.OK)
-                .entity(finalValue.toString())
-                .type(MediaType.APPLICATION_JSON_TYPE)
-                .build();
+        return new ResponseEntity<>(finalValue, HttpStatus.OK);
 
     }
 
